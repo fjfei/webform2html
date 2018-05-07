@@ -1,0 +1,16 @@
+name = WebForm 2 HTML
+description = Generates HTML documents from the submitted webforms。use print.
+core = 7.x
+package = Webform
+dependencies[] = webform
+dependencies[] = token
+dependencies[] = libraries
+
+; Files that contain classes:
+files[] = views/webform2html_handler_field_submission_htmlshow.inc
+
+version = "7.x-4.0"
+core = "7.x"
+project = "webform2html"
+
+

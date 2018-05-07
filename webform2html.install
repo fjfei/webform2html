@@ -1,0 +1,55 @@
+<?php
+/**
+ * @file
+ *   Webform2html module install/schema hooks.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function webform2html_install() {
+  variable_set('webform2html_default', 
+  array( 'hs_body' => array('value' => '[submission:values]', 'format' => 'full_html'),
+  ));
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function webform2html_uninstall() {
+  variable_del('webform2html_default');
+}
+
+/**
+ * Implements hook_schema().
+ */
+function webform2html_schema() {
+  $schema['webform2html'] = array(
+    'description' => 'Database containing the settings of webform2html.',
+    'fields' => array(
+      'nid' => array(
+        'description' => 'The node identifier of a webform2html.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'enabled' => array(
+        'description' => 'Show if a HTML will be generated: 0: OFF, 1: ON.',
+        'type' => 'int',
+        'size' => 'tiny',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+
+      'data' => array(
+        'type' => 'blob',
+        'size' => 'big',
+        'serialize' => TRUE,
+        'description' => 'Serialized data containing the webform2html properties.',
+      ),
+    ),
+    'primary key' => array('nid'),
+  );
+  return $schema;
+}
